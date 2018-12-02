@@ -21,11 +21,26 @@ function frontController(req,res) {
             res.end();   
         });
     }
-    for (const handler of handlers) {
-        if(handler(req,res) !== true){
-            break;
+
+    if(req.method == 'GET'){
+        for (const handler of handlers) {
+            if(handler(req,res) !== true){
+                break;
+            }
         }
+
+        //with stream req.on
+    }else if(req.method == 'POST'){
+        let body = '';
+        req.on('data', data =>{
+            body += data;
+        })
+        req.on('end', ()=>{
+            console.log(body);
+            res.end();
+        })
     }
+    
 }
 
 server.listen(port)

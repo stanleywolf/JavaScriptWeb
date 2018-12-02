@@ -8,7 +8,7 @@ const mimeTypes = {
 
 function staticHandler(req, res) {
     if (req.path.startsWith('/static/')) {
-        if (req.path.endsWith('.css')) {
+       
             const extention = req.path.split('.').pop();
             res.writeHead(200, {
                 'Content-Type': mimeTypes[extention]
@@ -17,9 +17,9 @@ function staticHandler(req, res) {
                 res.write(data);
                 res.end();
             });
-        } else {
-            return true;
-        }
+        
+    }else {
+        return true;
     }
 }
 
