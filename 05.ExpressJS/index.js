@@ -1,8 +1,26 @@
 let express = require('express');
-
+let bodyParser = require('body-parser');
 let app = express();
+let cats = require('./cats/catsController');
 const port = 5001;
 
+let middlewearFunc = (req,res,next) =>{
+    console.log(`Log: ` + req);
+    next();
+}
+//static files
+app.use(express.static('public'));
+//body-parser
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.get('/',middlewearFunc,(req,res) =>{
+    res.send('About');
+})
+//global middleware
+app.use((req,res,next) =>{
+    console.log("hi!")
+    next();
+})
 //auth in routing
 let authentication = (req, res, next) => {
     if (!user.isAuthenticated()) {
@@ -66,16 +84,17 @@ app.get('/json', (req, res) => {
 //return file to browser
 app.get('/send', (req, res) => {
     res.sendFile(__dirname + '/index.js');
-})
+});
 
-//new route
-let router = express.Router();
-
-router.get('/create',(req,res) =>{
-    res.send('Create cat!!!')
+app.post('/save-form',(req,res) =>{
+    console.log(req.body);
+    console.log(req.body.firstName);
+    console.log(req.body.age);
+    
+    res.redirect('/');
 })
 
 // /create - go to /cats/create
-app.use('/cats', router);
+app.use('/cats', cats);
 
 app.listen(port, () => console.log('Running....'))
