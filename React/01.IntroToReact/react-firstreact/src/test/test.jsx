@@ -3,6 +3,8 @@ import Welcome from '../components/welcome'
 import Logo from '../components/logo';
 import Button from '../components/button';
 import Timer from '../components/timer';
+import ButtonEvent from '../components/buttonEvent';
+import RegisterForm from '../components/registerForm';
 
 class InnerComponenet extends Component{
     render(){
@@ -12,10 +14,10 @@ class InnerComponenet extends Component{
             age:36
         }
         return <div className="red">
+            <RegisterForm />
             <Logo /> <br/>
             <Button text="Click me"/> <br/>
-                Inner component {message}. 
-                I am {object.name} {object.age} years old!
+                Inner component {message}. I am {object.name} {object.age} years old!
                 <Welcome title="React" subtitle="Eho" specificClass="green"/>
                 <Welcome title="Sprint"/>
                 <Timer />
@@ -27,7 +29,12 @@ class HelloMessage extends Component{
     render(){
         //wrap 2 components
         //return <div><h1>Hello, world</h1><h2>Hello from react</h2></div>
-        return <h1>Hello, world! {this.props.message}<InnerComponenet /></h1>
+        return (
+            <div>
+                <h1>Hello, world! {this.props.message}<InnerComponenet /></h1>
+                <ButtonEvent name="Random Button"/>
+            </div>
+        )
     }
 }
 
