@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Welcome from '../components/welcome'
+import Logo from '../components/logo';
+import Button from '../components/button';
 
 class InnerComponenet extends React.Component{
     render(){
@@ -8,8 +11,12 @@ class InnerComponenet extends React.Component{
             age:36
         }
         return <div className="red">
+            <Logo /> <br/>
+            <Button text="Click me"/> <br/>
                 Inner component {message}. 
                 I am {object.name} {object.age} years old!
+                <Welcome title="React" subtitle="Eho" specificClass="green"/>
+                <Welcome title="Sprint"/>
             </div>
     }
 }
