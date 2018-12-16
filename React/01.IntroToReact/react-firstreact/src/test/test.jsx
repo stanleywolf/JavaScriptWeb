@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Welcome from '../components/welcome'
 import Logo from '../components/logo';
 import Button from '../components/button';
+import Timer from '../components/timer';
 
-class InnerComponenet extends React.Component{
+class InnerComponenet extends Component{
     render(){
         let message = 'out of me'
         let object = {
@@ -17,11 +18,12 @@ class InnerComponenet extends React.Component{
                 I am {object.name} {object.age} years old!
                 <Welcome title="React" subtitle="Eho" specificClass="green"/>
                 <Welcome title="Sprint"/>
+                <Timer />
             </div>
     }
 }
 
-class HelloMessage extends React.Component{
+class HelloMessage extends Component{
     render(){
         //wrap 2 components
         //return <div><h1>Hello, world</h1><h2>Hello from react</h2></div>
